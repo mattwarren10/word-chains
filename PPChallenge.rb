@@ -1,3 +1,5 @@
+require 'pry'
+
 class ProgrammingLanguage
   attr_accessor :name, :age, :type
   def initialize(name, age, type)
@@ -18,9 +20,19 @@ end
   array_of_languages = [ruby, python, javascript, go, rust, swift, java]
 
   def array_printer(array)
-  array.each do | language |
-    puts "Language: #{language.name} |  Age: #{language.age} |  Type System: #{language.type}"
+    array.each do | language |
+      puts "Language: #{language.name} |  Age: #{language.age} |  Type System: #{language.type}"
+    end
   end
-end
+
+  def sort_by_age(array)
+    sorted_arr = array.sort { |x,y| y.age <=> x.age }
+    sorted_arr.each do |lang|
+      puts "Language: #{lang.name} |  Age: #{lang.age} |  Type System: #{lang.type}"
+    end
+  end
 
 array_printer(array_of_languages)
+puts "-" * 50
+puts "Languages from oldest to youngest"
+sort_by_age(array_of_languages)
