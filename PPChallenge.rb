@@ -25,14 +25,44 @@ end
     end
   end
 
-  def sort_by_age(array)
-    sorted_arr = array.sort { |x,y| y.age <=> x.age }
-    sorted_arr.each do |lang|
-      puts "Language: #{lang.name} |  Age: #{lang.age} |  Type System: #{lang.type}"
-    end
-  end
+
+#Map
+aged_languages = array_of_languages.map do |language|
+   language.age += 1
+   language   
+end
+#Sort
+sorted_arr = aged_languages.sort do |x,y|
+  y.age <=> x.age 
+end
+#delete_at
+arr_wo_java = array_of_languages.delete_at(6)
+
+#delete_if
+array_of_languages.delete_if do|language| 
+ language == java
+end
+
+
+#select
+array_select = array_of_languages.select do |language|
+  language.age < 15
+end
 
 array_printer(array_of_languages)
 puts "-" * 50
-puts "Languages from oldest to youngest"
-sort_by_age(array_of_languages)
+array_printer(sorted_arr)
+puts "-" * 50
+array_printer(array_of_languages)
+puts "-" * 50
+#Shuffle
+array_printer(sorted_arr.shuffle)
+
+puts "-" * 50
+array_printer(aged_languages)  
+puts "-" * 50
+#Drop 
+array_printer(aged_languages.drop(3))   
+
+puts "-" * 50
+array_printer(array_select)
